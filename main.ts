@@ -1,3 +1,6 @@
+/**
+ * Every 5 minutes, it will save your progress!
+ */
 input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
     basic.clearScreen()
     if (hungerlevel > 94) {
@@ -166,6 +169,91 @@ input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
     basic.showIcon(IconNames.Asleep)
 })
+input.onGesture(Gesture.ScreenDown, function () {
+    if (megachestkey > 0) {
+        megachestkey += 1
+        if (randint(0, 5) == 0) {
+            betterfood += 2
+            basic.showLeds(`
+                . # # # .
+                # # # # #
+                # # # # .
+                . # # # .
+                . # # # .
+                `)
+            music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+            basic.pause(2000)
+            basic.showString("2X!")
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showIcon(IconNames.Asleep)
+        } else if (randint(0, 5) == 1) {
+            foodnumber += 5
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # #
+                . . . # #
+                `)
+            music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+            basic.pause(2000)
+            basic.showString("5X!")
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showIcon(IconNames.Asleep)
+        } else if (randint(0, 5) == 2) {
+            basic.showLeds(`
+                . . . . .
+                . # . . .
+                # . # # #
+                . # . . .
+                . . . . .
+                `)
+            music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+            basic.pause(2000)
+            basic.showString("3X!")
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showIcon(IconNames.Asleep)
+        } else {
+            basic.showLeds(`
+                # . . . #
+                . # . # .
+                . . # . .
+                . # . # .
+                # . . . #
+                `)
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showIcon(IconNames.Asleep)
+        }
+    }
+})
+input.onGesture(Gesture.TiltRight, function () {
+    if (chestkey > 4) {
+        chestkey += -5
+        megachestkey += 1
+        basic.showLeds(`
+            . . . . .
+            # # . # .
+            # # # # #
+            # # . # .
+            . . . . .
+            `)
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        music.play(music.tonePlayable(330, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        music.play(music.tonePlayable(349, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        basic.pause(3000)
+        basic.clearScreen()
+        basic.showIcon(IconNames.Asleep)
+    } else {
+        basic.showString("You need 5 chest key")
+        basic.pause(2000)
+        basic.clearScreen()
+        basic.showIcon(IconNames.Asleep)
+    }
+})
 input.onButtonPressed(Button.AB, function () {
     basic.clearScreen()
     if (hungerlevel > 99) {
@@ -214,8 +302,8 @@ input.onButtonPressed(Button.AB, function () {
             basic.pause(500)
             music.play(music.tonePlayable(220, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
             basic.showLeds(`
-                # # . # #
                 . . . . .
+                # # . # #
                 . . . . .
                 . # # # .
                 . . . . .
@@ -232,8 +320,8 @@ input.onButtonPressed(Button.AB, function () {
             basic.pause(500)
             music.play(music.tonePlayable(220, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
             basic.showLeds(`
-                # # . # #
                 . . . . .
+                # # . # #
                 . . . . .
                 . # # # .
                 . . . . .
@@ -337,16 +425,14 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
         basic.showIcon(IconNames.Asleep)
     }
 })
+let megachestkey = 0
 let foodnumber = 0
 let chestkey = 0
 let betterfood = 0
 let hungerlevel = 0
-hungerlevel += 52
+hungerlevel += 50
 basic.showIcon(IconNames.Asleep)
 music.play(music.builtinPlayableSoundEffect(soundExpression.hello), music.PlaybackMode.UntilDone)
-/**
- * Every 5 minutes, it will save your progress!
- */
 basic.forever(function () {
     basic.pause(300000)
     datalogger.log(
