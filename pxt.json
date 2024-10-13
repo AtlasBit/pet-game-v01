@@ -1,10 +1,11 @@
 {
-    "name": "Pet Game V0.1",
+    "name": "Pet Game V0.2",
     "description": "",
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "datalogger": "*"
     },
     "files": [
         "main.blocks",

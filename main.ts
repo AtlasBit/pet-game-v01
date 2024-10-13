@@ -26,8 +26,8 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
             basic.pause(500)
             music.play(music.tonePlayable(349, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
             basic.showLeds(`
-                # # . # #
                 . . . . .
+                # # . # #
                 . . . . .
                 . # # # .
                 . . . . .
@@ -44,8 +44,8 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
             basic.pause(500)
             music.play(music.tonePlayable(349, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
             basic.showLeds(`
-                # # . # #
                 . . . . .
+                # # . # #
                 . . . . .
                 . # # # .
                 . . . . .
@@ -62,8 +62,8 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
             basic.pause(500)
             music.play(music.tonePlayable(349, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
             basic.showLeds(`
-                # # . # #
                 . . . . .
+                # # . # #
                 . . . . .
                 . # # # .
                 . . . . .
@@ -79,9 +79,87 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
         basic.showIcon(IconNames.Asleep)
     }
 })
+input.onGesture(Gesture.TiltLeft, function () {
+    basic.clearScreen()
+    if (chestkey > 0) {
+        chestkey += -1
+        basic.showString("You get")
+        basic.pause(2000)
+        if (randint(0, 3) == 0) {
+            basic.showLeds(`
+                . . . . .
+                . # # # .
+                . # # # .
+                . # # # #
+                . . . # #
+                `)
+            foodnumber += 1
+            music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+            basic.pause(2000)
+            basic.showString("2X!")
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showLeds(`
+                . . . . .
+                # # . # #
+                . . . . .
+                . # # # .
+                . . . . .
+                `)
+        } else if (randint(0, 3) == 1) {
+            basic.showLeds(`
+                . # # # .
+                # # # # #
+                # # # # #
+                . # # # .
+                . # # # .
+                `)
+            betterfood += 1
+            music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showLeds(`
+                . . . . .
+                # # . # #
+                . . . . .
+                . # # # .
+                . . . . .
+                `)
+        } else {
+            basic.showLeds(`
+                # . . . #
+                . # . # .
+                . . # . .
+                . # . # .
+                # . . . #
+                `)
+            music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
+            basic.pause(2000)
+            basic.clearScreen()
+            basic.showLeds(`
+                . . . . .
+                # # . # #
+                . . . . .
+                . # # # .
+                . . . . .
+                `)
+        }
+    } else {
+        basic.showString("You need a key!")
+        basic.pause(1000)
+        basic.clearScreen()
+        basic.showLeds(`
+            . . . . .
+            # # . # #
+            . . . . .
+            . # # # .
+            . . . . .
+            `)
+    }
+})
 input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
-    basic.showString("Your pet hunger level is")
+    basic.showString("Your pet hunger is")
     basic.clearScreen()
     basic.showNumber(hungerlevel)
     basic.pause(3000)
@@ -173,6 +251,7 @@ input.onButtonPressed(Button.AB, function () {
             basic.pause(3000)
             basic.clearScreen()
             basic.showIcon(IconNames.Asleep)
+            music.play(music.tonePlayable(220, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
         } else {
             basic.showString("You need 1 food.")
             basic.pause(2000)
@@ -192,7 +271,7 @@ input.onButtonPressed(Button.B, function () {
     basic.showIcon(IconNames.Asleep)
 })
 input.onGesture(Gesture.Shake, function () {
-    if (randint(0, 3) == 0) {
+    if (randint(0, 8) == 0) {
         basic.showLeds(`
             . . . . .
             . # # # .
@@ -203,6 +282,22 @@ input.onGesture(Gesture.Shake, function () {
         foodnumber += 1
         music.play(music.tonePlayable(440, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
         music.play(music.tonePlayable(523, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        basic.pause(1000)
+        basic.clearScreen()
+    } else if (randint(0, 8) == 3) {
+        basic.showLeds(`
+            . . . . .
+            . # . . .
+            # . # # #
+            . # . . .
+            . . . . .
+            `)
+        chestkey += 1
+        music.play(music.tonePlayable(988, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        music.play(music.tonePlayable(698, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        music.play(music.tonePlayable(880, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        basic.pause(1000)
+        basic.clearScreen()
     } else {
         basic.showLeds(`
             # . . . #
@@ -213,9 +308,12 @@ input.onGesture(Gesture.Shake, function () {
             `)
         music.play(music.tonePlayable(175, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
         music.play(music.tonePlayable(147, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        basic.pause(1000)
+        basic.clearScreen()
     }
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    basic.clearScreen()
     if (foodnumber > 4) {
         foodnumber += -5
         betterfood += 1
@@ -240,11 +338,24 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     }
 })
 let foodnumber = 0
+let chestkey = 0
 let betterfood = 0
 let hungerlevel = 0
-hungerlevel += 50
+hungerlevel += 52
 basic.showIcon(IconNames.Asleep)
 music.play(music.builtinPlayableSoundEffect(soundExpression.hello), music.PlaybackMode.UntilDone)
+/**
+ * Every 5 minutes, it will save your progress!
+ */
+basic.forever(function () {
+    basic.pause(300000)
+    datalogger.log(
+    datalogger.createCV("FoodNumber", foodnumber),
+    datalogger.createCV("BetterFoodNumber", betterfood),
+    datalogger.createCV("HungerLevel", hungerlevel),
+    datalogger.createCV("ChestKey", chestkey)
+    )
+})
 basic.forever(function () {
     if (hungerlevel == 0) {
         basic.clearScreen()
@@ -259,6 +370,7 @@ basic.forever(function () {
         music.play(music.builtinPlayableSoundEffect(soundExpression.mysterious), music.PlaybackMode.UntilDone)
         basic.showIcon(IconNames.Skull)
         basic.pause(5000)
+        datalogger.deleteLog(datalogger.DeleteType.Full)
         control.reset()
     }
 })
