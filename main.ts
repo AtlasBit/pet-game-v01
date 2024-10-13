@@ -86,7 +86,6 @@ input.onButtonPressed(Button.A, function () {
     basic.showNumber(hungerlevel)
     basic.pause(3000)
     basic.clearScreen()
-    basic.clearScreen()
     basic.showIcon(IconNames.Asleep)
 })
 input.onButtonPressed(Button.AB, function () {
@@ -193,7 +192,6 @@ input.onButtonPressed(Button.B, function () {
     basic.showIcon(IconNames.Asleep)
 })
 input.onGesture(Gesture.Shake, function () {
-    basic.clearScreen()
     if (randint(0, 3) == 0) {
         basic.showLeds(`
             . . . . .
@@ -246,8 +244,8 @@ hungerlevel += 50
 basic.showIcon(IconNames.Asleep)
 music.play(music.builtinPlayableSoundEffect(soundExpression.hello), music.PlaybackMode.UntilDone)
 basic.forever(function () {
-    basic.clearScreen()
     if (hungerlevel == 0) {
+        basic.clearScreen()
         basic.showLeds(`
             . . . . .
             # # . # #
