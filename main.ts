@@ -219,6 +219,8 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     if (foodnumber > 4) {
         foodnumber += -5
         betterfood += 1
+        music.play(music.tonePlayable(440, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        music.play(music.tonePlayable(523, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
         basic.showLeds(`
             . # # # .
             # # # # #
