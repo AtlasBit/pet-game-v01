@@ -96,7 +96,7 @@ input.onGesture(Gesture.TiltLeft, function () {
                 . # # # #
                 . . . # #
                 `)
-            foodnumber += 1
+            foodnumber += 2
             music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
             basic.pause(2000)
             basic.showString("2X!")
@@ -170,6 +170,7 @@ input.onButtonPressed(Button.A, function () {
     basic.showIcon(IconNames.Asleep)
 })
 input.onGesture(Gesture.ScreenDown, function () {
+    basic.clearScreen()
     if (megachestkey > 0) {
         megachestkey += 1
         if (randint(0, 5) == 0) {
@@ -203,6 +204,7 @@ input.onGesture(Gesture.ScreenDown, function () {
             basic.clearScreen()
             basic.showIcon(IconNames.Asleep)
         } else if (randint(0, 5) == 2) {
+            chestkey += 3
             basic.showLeds(`
                 . . . . .
                 . # . . .
@@ -217,6 +219,8 @@ input.onGesture(Gesture.ScreenDown, function () {
             basic.clearScreen()
             basic.showIcon(IconNames.Asleep)
         } else {
+            music.play(music.tonePlayable(175, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+            music.play(music.tonePlayable(147, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
             basic.showLeds(`
                 # . . . #
                 . # . # .
@@ -231,6 +235,7 @@ input.onGesture(Gesture.ScreenDown, function () {
     }
 })
 input.onGesture(Gesture.TiltRight, function () {
+    basic.clearScreen()
     if (chestkey > 4) {
         chestkey += -5
         megachestkey += 1
@@ -326,15 +331,6 @@ input.onButtonPressed(Button.AB, function () {
                 . # # # .
                 . . . . .
                 `)
-            basic.pause(500)
-            music.play(music.tonePlayable(262, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
-            basic.showLeds(`
-                . . . . .
-                # # . # #
-                . . . . .
-                . # # # .
-                . . . . .
-                `)
             music._playDefaultBackground(music.builtInPlayableMelody(Melodies.Dadadadum), music.PlaybackMode.UntilDone)
             basic.pause(3000)
             basic.clearScreen()
@@ -359,6 +355,7 @@ input.onButtonPressed(Button.B, function () {
     basic.showIcon(IconNames.Asleep)
 })
 input.onGesture(Gesture.Shake, function () {
+    basic.clearScreen()
     if (randint(0, 8) == 0) {
         basic.showLeds(`
             . . . . .
@@ -372,6 +369,13 @@ input.onGesture(Gesture.Shake, function () {
         music.play(music.tonePlayable(523, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
         basic.pause(1000)
         basic.clearScreen()
+        basic.showLeds(`
+            . . . . .
+            # # . # #
+            . . . . .
+            . # # # .
+            . . . . .
+            `)
     } else if (randint(0, 8) == 3) {
         basic.showLeds(`
             . . . . .
@@ -386,6 +390,13 @@ input.onGesture(Gesture.Shake, function () {
         music.play(music.tonePlayable(880, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
         basic.pause(1000)
         basic.clearScreen()
+        basic.showLeds(`
+            . . . . .
+            # # . # #
+            . . . . .
+            . # # # .
+            . . . . .
+            `)
     } else {
         basic.showLeds(`
             # . . . #
@@ -398,6 +409,13 @@ input.onGesture(Gesture.Shake, function () {
         music.play(music.tonePlayable(147, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
         basic.pause(1000)
         basic.clearScreen()
+        basic.showLeds(`
+            . . . . .
+            # # . # #
+            . . . . .
+            . # # # .
+            . . . . .
+            `)
     }
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
